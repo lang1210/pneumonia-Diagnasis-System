@@ -77,5 +77,24 @@ weighted avg     0.8814    0.8782    0.8753       624
 
  [[175  59]
  [ 17 373]]
+4
+# 加权随机采样 (Weighted Random Sampling)
+ 思路：在每个训练批次中，强行让模型多看一些“正常”样本。比如正常情况下抽10张图，可能有7张肺炎3张正常；加权后，我们可以让它每次都抽5张肺炎5张正常，实现批次内的数据均衡
+ 
+ 分类标签: ['NORMAL', 'PNEUMONIA']
+------------------------------
+分类报告 (Classification Report):
+              precision    recall  f1-score   support
 
-混淆矩阵图片已保存为 confusion_matrix.png
+      NORMAL     0.9105    0.7393    0.8160       234
+   PNEUMONIA     0.8594    0.9564    0.9053       390
+
+    accuracy                         0.8750       624
+   macro avg     0.8850    0.8479    0.8607       624
+weighted avg     0.8786    0.8750    0.8719       624
+
+------------------------------
+混淆矩阵 (Confusion Matrix):
+[[173  61]
+ [ 17 373]]
+
