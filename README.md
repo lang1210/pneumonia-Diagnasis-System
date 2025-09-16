@@ -50,7 +50,13 @@ criterion = nn.CrossEntropyLoss(weight=weights)
     accuracy                         0.8526       624
    macro avg     0.8824    0.8111    0.8294       624
 weighted avg     0.8671    0.8526    0.8451       624
+混淆矩阵 (Confusion Matrix):
 
+[[151  83]
+
+ [  9 381]]
+
+用了方案一。貌似没有任何提升
 ------------------------------
 3
 # 对“正常”样本进行更强的数据增强 (Class-Specific Augmentation)
