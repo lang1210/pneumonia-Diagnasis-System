@@ -33,13 +33,13 @@ weighted avg     0.8646    0.8494    0.8414       624
 
 
 2.
-# --- 修改损失函数 ---
-# 根据我们训练集的样本数 (NORMAL=1349, PNEUMONIA=3884) 计算权重
-# 权重计算逻辑：总样本数 / (类别数 * 该类别样本数)
-# 目的是让样本数少的类别获得更高的权重
+ --- 修改损失函数 ---
+ 根据我们训练集的样本数 (NORMAL=1349, PNEUMONIA=3884) 计算权重
+ 权重计算逻辑：总样本数 / (类别数 * 该类别样本数)
+ 目的是让样本数少的类别获得更高的权重
 weights = torch.tensor([ (1349+3884)/(2*1349), (1349+3884)/(2*3884) ]).to(device)
 
-# 将权重传入损失函数
+将权重传入损失函数
 criterion = nn.CrossEntropyLoss(weight=weights)
 分类报告 (Classification Report):
               precision    recall  f1-score   support
