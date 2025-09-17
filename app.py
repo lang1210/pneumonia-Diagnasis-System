@@ -71,7 +71,7 @@ def load_model():
     device = torch.device("cpu")
     model = create_model(num_classes=2)
     
-    model_url = "https://github.com/lang1210/pneumonia-Diagnosis-System/raw/main/saved_models/best_model.pth"
+    model_url = "https://github.com/lang1210/pneumonia-Diagnasis-System/blob/main/saved_models/best_model5.pth"
     model_path = 'saved_models/best_model.pth'
 
     if not os.path.exists(model_path):
