@@ -97,4 +97,22 @@ weighted avg     0.8786    0.8750    0.8719       624
 混淆矩阵 (Confusion Matrix):
 [[173  61]
  [ 17 373]]
+5
+# 换全连接层分类头为2
+------------------------------
+分类报告 (Classification Report):
+              precision    recall  f1-score   support
 
+      NORMAL     0.9290    0.7265    0.8153       234
+   PNEUMONIA     0.8549    0.9667    0.9073       390
+
+    accuracy                         0.8766       624
+   macro avg     0.8919    0.8466    0.8613       624
+weighted avg     0.8827    0.8766    0.8728       624
+
+------------------------------
+混淆矩阵 (Confusion Matrix):
+[[170  64]
+ [ 13 377]]
+
+混淆矩阵图片已保存为 confusion_matrix.png
