@@ -151,7 +151,7 @@ def main():
         image_bytes = uploaded_file.getvalue()
         
         # 在网页上显示上传的图片
-        st.image(image_bytes, caption='已上传的X光片', use_column_width=True)
+        st.image(image_bytes, caption='已上传的X光片', use_container_width=True)
         
         # 当用户点击“开始诊断”按钮时，执行预测
         if st.button('开始诊断'):
