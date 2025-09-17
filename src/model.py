@@ -1,27 +1,47 @@
 # src/model.py
 
+# src/model.py
+
+# from torchvision import models
+# import torch.nn as nn
+# # 在文件顶部，新增这一行导入
+# from torchvision.models import ResNet50_Weights
+
+# def create_model(num_classes=2):
+#     # 获取当前最优的预训练权重
+#     weights = ResNet50_Weights.DEFAULT
+    
+#     # 使用新的 'weights' 参数来替换 'pretrained=True'
+#     model = models.resnet50(weights=weights)
+    
+#     # ... 函数的其余部分 ...
+#     return model
+
+# src/model.py
+
+
+
+
+# 替换分类头为2，之前为默认resnet的1000
 from torchvision import models
 import torch.nn as nn
+from torchvision.models import ResNet50_Weights
 
 def create_model(num_classes=2):
     """
     创建一个预训练的ResNet-50模型，并替换最后的全连接层。
-    
-    Args:
-        num_classes (int): 输出类别的数量 (我们是2分类：正常/肺炎)。
-    
-    Returns:
-        model: 配置好的PyTorch模型。
     """
-    # 加载一个在ImageNet上预训练好的ResNet-50模型
-    model = models.resnet50(pretrained=True)
+    # 获取当前最优的预训练权重
+    weights = ResNet50_Weights.DEFAULT
     
-    # "冻结"模型的所有参数，这样在训练时它们就不会更新
-    # 我们只训练我们自己添加的最后一层
+    # 加载预训练模型
+    model = models.resnet50(weights=weights)
+    
+    # 冻结所有原始参数
     for param in model.parameters():
         param.requires_grad = False
         
-    # 获取模型最后全连接层的输入特征数
+    # 获取最后全连接层的输入特征数
     num_ftrs = model.fc.in_features
     
     # 替换掉原来的全连接层，换成我们自己的，输出维度为num_classes
