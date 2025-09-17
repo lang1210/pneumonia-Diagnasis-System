@@ -3,7 +3,7 @@ import torch
 from torchvision import transforms
 from PIL import Image
 import io
-
+import os
 # 导入我们之前编写的模型创建函数
 from src.model import create_model
 
