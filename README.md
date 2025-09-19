@@ -3,12 +3,12 @@
 肺炎X光片智能诊断系统 (Pneumonia Diagnosis System)
 这是一个基于PyTorch和Streamlit构建的端到端深度学习项目，旨在通过胸部X光片图像，智能地辅助诊断是否患有肺炎。项目不仅涵盖了从数据处理、模型训练、性能评估的全过程，还特别关注了真实世界中常见的数据不均衡和域外样本问题，并最终将模型封装成了一个公开、可交互的Web应用。
 
-🚀 在线应用演示 (Live Demo)
+### 🚀 在线应用演示 (Live Demo)
 您可以通过以下链接，直接访问并使用这个智能诊断系统：
 
 ➡️ https://your-app-name.streamlit.app/ ⬅️
 
-✨ 主要功能 (Features)
+### ✨ 主要功能 (Features)
 高精度二分类：能有效地区分“正常(NORMAL)”与“肺炎(PNEUMONIA)”的胸部X光片。
 
 鲁棒性设计：通过引入“无效(INVALID)”类别，模型能够识别并拒绝处理非X光片的无关图像，避免在真实场景中做出无意义的错误判断。
@@ -17,7 +17,7 @@
 
 模型自动下载：应用在云端首次启动时，会自动从指定的URL下载训练好的模型权重，实现了代码与模型的解耦。
 
-🛠️ 技术栈 (Tech Stack)
+### 🛠️ 技术栈 (Tech Stack)
 语言: Python 3.9
 
 核心框架: PyTorch, Torchvision
@@ -28,7 +28,7 @@ Web应用与部署: Streamlit, Streamlit Community Cloud
 
 版本控制与文件管理: Git, Git LFS
 
-🔧 如何在本地运行？ (Setup and Usage)
+### 🔧 如何在本地运行？ (Setup and Usage)
 克隆仓库
 
 Bash
@@ -54,7 +54,7 @@ conda activate torch_env
 
 启动Web应用: streamlit run app.py
 
-🎯 项目挑战与解决方案 (Key Challenges & Solutions)
+### 🎯 项目挑战与解决方案 (Key Challenges & Solutions)
 1. 训练数据严重不均衡
 问题: 训练集中“肺炎”样本数量远超“正常”样本，导致模型严重偏向于将结果预测为“肺炎”，使得对“正常”样本的召回率极低（仅63.7%）。
 
@@ -82,7 +82,7 @@ conda activate torch_env
 
 部署层面: 解决了GitHub对大文件的限制（通过Git LFS）和Streamlit Cloud对依赖文件格式（requirements.txt的pip格式）、Python版本的要求，最终成功将应用部署到公网。
 
-📊 最终结果 (Results)
+### 📊 最终结果 (Results)
 经过多轮优化，最终的三分类模型在测试集上表现稳健，关键的混淆矩阵如下：
 
 
