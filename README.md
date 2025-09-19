@@ -91,6 +91,7 @@ conda activate torch_env
 
 该模型未经过针对性优化，少数类（NORMAL）的召回率较低，证明了数据不均衡带来的负面影响。
 
+
 | 类别 (Class) | 精确率 (Precision) | 召回率 (Recall) | F1-Score | support | 
 
 |:----------:|:------------------:|:---------------:|:----------:| 
@@ -101,6 +102,7 @@ conda activate torch_env
 
 | **总准确率 (Overall Accuracy)** |         -          |       -        |  0.8494 |
 ### 分类报告 (Classification Report)
+
 
 | 类别 (Class) | 精确率 (Precision) | 召回率 (Recall) | F1-Score | support |
 
