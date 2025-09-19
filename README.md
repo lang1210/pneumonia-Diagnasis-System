@@ -188,6 +188,7 @@ conda activate torch_env
 ### 5. 换全连接层分类头为2
 
 到这里才看见是按找标准的resnet50的1000分类来的哈哈
+ ### 分类报告 (Classification Report)
 
 | 类别 (Class) | 精确率 (Precision) | 召回率 (Recall) | F1-Score | support |
 |:---|:---:|:---:|:---:|:---:|
@@ -200,10 +201,30 @@ conda activate torch_env
 
 | | 预测为 Normal | 预测为 Pneumonia |
 | :--- | :---: | :---: |
-| **实际是 Normal** | 170 | 64 |
-| **实际是 Pneumonia** | 13 | 377 |
+| **实际是 Normal** | 180 | 54 |
+| **实际是 Pneumonia** | 12 | 378 |
 
 ------------------------------
 
-接下来尝试更多的轮次，以及量化，量化后尝试直接部署在手机端
+### 6.早停和学习率衰减
+
+### 分类报告 (Classification Report)
+
+| 类别 (Class) | 精确率 (Precision) | 召回率 (Recall) | F1-Score | support |
+|:---|:---:|:---:|:---:|:---:|
+| **NORMAL** | 0.9375 |   0.7692 | 0.8451 | 234 |
+| **PNEUMONIA** | 0.8750 | 0.9692 | 0.9197 | 390 |
+| **总准确率 (Accuracy)** | - | - | 0.8942 | 624 |
+
+
+### 混淆矩阵 (Confusion Matrix)
+
+| | 预测为 Normal | 预测为 Pneumonia |
+| :--- | :---: | :---: |
+| **实际是 Normal** | 173 | 61 |
+| **实际是 Pneumonia** | 17 | 373 |
+
+由于数据集大小以及学习框架本身限制，实际上十几轮次就已经达到了准确率的上限，所以其实并没有多少提升
+
+接下来尝试量化，量化后尝试直接部署在手机app端
 
