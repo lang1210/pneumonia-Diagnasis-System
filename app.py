@@ -218,7 +218,7 @@ def main():
             col1, col2 = st.columns(2)
             with col1:
                 st.subheader("原始图片")
-                st.image(my_image, caption='Uploaded Image', use_container_width=True)
+                st.image(image_bytes, caption='已上传的图片', use_container_width=True)
             
             with col2:
                 st.subheader("检测结果")
@@ -226,7 +226,7 @@ def main():
                     with st.spinner('模型正在分析中，请稍候...'):
                         result_image = predict_and_draw_boxes(model, image_bytes, device)
                     
-                    st.image(result_image, caption='模型检测结果', use_column_width=True)
+                    st.image(result_image, caption='模型检测结果', use_container_width=True)
                     st.success('检测完成！')
 
 if __name__ == '__main__':
