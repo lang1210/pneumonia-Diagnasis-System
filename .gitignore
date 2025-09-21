@@ -212,6 +212,8 @@ data/
 
 # Ignore the trained models folder
 saved_models/
+# ...但是，不要忽略我们想要上传的这一个特定的模型文件！
+!saved_models/best_detection_model.pth
 
 # Ignore Visual Studio specific files
 .vs/
