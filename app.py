@@ -128,25 +128,49 @@ from preprocess_bdd import BDD_CATEGORIES # 导入类别定义
 
 # --- Streamlit 缓存 ---
 @st.cache_resource
+# app.py (替换旧的 load_model 函数)
+
+# ... (确保文件顶部有 import os, import streamlit as st, import requests 等) ...
+
+@st.cache_resource
 def load_model():
-    """加载并返回训练好的目标检测模型"""
+    """加载模型，如果本地不存在，则从URL下载"""
     device = torch.device("cpu") # Streamlit Cloud是CPU环境
-    # BDD100K有10个类别 + 1个背景
     model = create_detection_model(num_classes=11)
     
+    # --- 请将这里的链接替换为您自己的模型直接下载链接 ---
+    model_url = "https://github.com/lang1210/pneumonia-Diagnasis-System/raw/refs/heads/main/saved_models/best_detection_model.pth?download=" # 这是一个示例，请确保链接是您最新的、正确的模型
     model_path = 'saved_models/best_detection_model.pth'
-    
-    # 假设模型文件已经通过LFS等方式与项目一同存在
+
+    # 如果模型文件在服务器上不存在，则从网上下载
     if not os.path.exists(model_path):
-        # 在这里，您可以加入我们之前讨论过的、从URL自动下载模型的逻辑
-        st.error(f"错误：找不到模型文件 {model_path}。请确保模型文件已放置在正确位置。")
+        with st.spinner(f"首次加载，正在从网络下载模型文件（约100MB），请稍候..."):
+            if not os.path.exists('saved_models'):
+                os.makedirs('saved_models')
+            
+            try:
+                import requests
+                r = requests.get(model_url, stream=True)
+                r.raise_for_status() # 如果下载链接有问题则会报错
+                with open(model_path, "wb") as f:
+                    for chunk in r.iter_content(chunk_size=8192):
+                        if chunk:
+                            f.write(chunk)
+                st.success("模型下载完成！")
+            except Exception as e:
+                st.error(f"模型下载失败: {e}")
+                return None, None
+    
+    # 从本地路径加载模型权重
+    try:
+        model.load_state_dict(torch.load(model_path, map_location=device))
+    except Exception as e:
+        st.error(f"加载模型权重失败: {e}")
         return None, None
 
-    model.load_state_dict(torch.load(model_path, map_location=device))
     model = model.to(device)
     model.eval()
     return model, device
-
 # --- 预测与绘图函数 ---
 def predict_and_draw_boxes(model, image_bytes, device, confidence_threshold=0.5):
     """对单张图片进行预测，并返回画好框的图片"""
